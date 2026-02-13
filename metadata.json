@@ -1,0 +1,7 @@
+{
+  "name": "IURYNEX - Aura Asistente Legal",
+  "description": "Asistente jurídica inteligente impulsada por IA para brindar orientación legal inmediata en Ecuador.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
