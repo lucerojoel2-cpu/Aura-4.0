@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Sidebar from './components/Sidebar';
-import ChatInterface from './components/ChatInterface';
-import LiveInterface from './components/LiveInterface';
-import { AppView, Message } from './types';
+import Sidebar from './components/Sidebar.tsx';
+import ChatInterface from './components/ChatInterface.tsx';
+import LiveInterface from './components/LiveInterface.tsx';
+import { AppView, Message } from './types.ts';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>(AppView.CHAT);
@@ -33,7 +33,7 @@ const App: React.FC = () => {
       timestamp: new Date()
     };
     setMessages(prev => [...prev, newUserMessage]);
-    setView(AppView.CHAT); // Switch to chat view if in live
+    setView(AppView.CHAT); // Cambiar a vista de chat si se está en vivo
   }, []);
 
   const handleScheduleClick = () => {
@@ -41,7 +41,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
+    <div className="flex h-screen bg-gray-50 overflow-hidden text-gray-900">
       {/* Sidebar */}
       <Sidebar 
         isOpen={isSidebarOpen} 
@@ -53,7 +53,7 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col relative min-w-0">
-        {/* Navigation Tabs - Top Center */}
+        {/* Navegación - Pestañas Superiores */}
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 flex p-1 bg-white border border-gray-200 rounded-full shadow-lg">
           <button
             onClick={() => setView(AppView.CHAT)}
@@ -73,11 +73,11 @@ const App: React.FC = () => {
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
-            Chat en Vivo 🎙️
+            Voz en Vivo 🎙️
           </button>
         </div>
 
-        {/* Content Area */}
+        {/* Área de Contenido */}
         <div className="flex-1 mt-20 p-4 md:p-6 overflow-hidden">
           {view === AppView.CHAT ? (
             <ChatInterface messages={messages} setMessages={setMessages} />
@@ -86,7 +86,7 @@ const App: React.FC = () => {
           )}
         </div>
 
-        {/* Mobile Sidebar Toggle (Visible only when sidebar is closed on mobile) */}
+        {/* Botón flotante para móvil si la sidebar está cerrada */}
         {!isSidebarOpen && (
           <button 
             onClick={() => setIsSidebarOpen(true)}
